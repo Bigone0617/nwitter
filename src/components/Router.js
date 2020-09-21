@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {HashRouter as Router, Route, Switch} from "react-router-dom";
 import Auth from "../routes/Auth";
-import Hoem from "../routes/Home";
 import Home from "../routes/Home";
 
 const AppRouter = ({ isLoggedIn }) => {
