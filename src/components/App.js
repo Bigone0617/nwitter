@@ -10,20 +10,25 @@ function App() {
   // 로그인했는지 안했는지 체크
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // user 정보
+  const [userObj, setUserObj] = useState(null);
+
   // 컴포넌트가 mount되면 실행됨. componentDidMount, componentDidUpdate, componentWillUnmount
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if(user) {
         setIsLoggedIn(true);
+        setUserObj(user);
       }else{
         setIsLoggedIn(false);
+        setUserObj(null);
       }
       setInit(true);
     })
   }, []);
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn}/> : "initializing..."}
+      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : "initializing..."}
       <footer>&copy;  {new Date().getFullYear()} Nwitter</footer>
     </>
     );
