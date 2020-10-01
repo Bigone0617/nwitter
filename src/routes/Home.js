@@ -1,8 +1,8 @@
+import Nweet from "components/Nweet";
 import { dbService } from "fbase";
 import React, { useEffect, useState } from "react";
 
 const Hoem = ({userObj}) => {
-    console.log(userObj);
     const [nweet, setNweet] = useState("");
     const [nweets, setNweets] = useState([]);
     // const getNweets = async() => {
@@ -41,8 +41,6 @@ const Hoem = ({userObj}) => {
         setNweet(value);
     };
 
-    console.log(nweets);
-
     return (
     <div>
         <form onSubmit={onSubmit}>
@@ -51,9 +49,11 @@ const Hoem = ({userObj}) => {
         </form>
         <div>
             {nweets.map(nweet => (
-                <div key={nweet.id}>
-                    <h4>{nweet.text}</h4>
-                </div>
+                <Nweet 
+                    key={nweet.id} 
+                    nweetObj={nweet} 
+                    isOwner={nweet.creatorId === userObj.uid}
+                />
             ))}
         </div>
     </div>
